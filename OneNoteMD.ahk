@@ -28,19 +28,41 @@ inCodeBlock := ""
     }
     return
 
+
+
+; Logic for in line code formatting (new)
+; #IfWinActive ahk_exe ONENOTE.EXE
+; `::
+;     Send, {``} 
+;     If (A_ThisHotkey = A_PriorHotkey) {
+;         Send, {BackSpace}
+;         Send, {Space}
+;         Send, {left}
+;         Send, ^+{left}
+;         Send, !hi{down}{down}{right}{right}{right}{enter}
+;         Send, {BackSpace}
+;         Send, ^+{right}
+;         Send, !hffCourier New{enter}
+;         Send, {Right}{Space}
+;     }
+;     return
+
+
 ; Logic for in-line code blocks
 #IfWinActive ahk_exe ONENOTE.EXE
 `::
-    if(inCodeBlock) {                                                   ;means we are leaving code block
+    if(inCodeBlock) {  
+        Send, {``}                                                 ;means we are leaving code block
         Send, !hffcalibri{enter}                                        ;Set font to courier new
         Send, !hin                                                      ;turn off highlighting
         inCodeBlock := ""
     } else {
         Send, !hi{down}{down}{right}{right}{right}{enter}      ;set background highlighting to the text format colour
         Send, !hffCourier New{enter}                                    ;Set font back to calibri
-        inCodeBlock := "true"               
+        inCodeBlock := "true" 
+        Send, {``}              
     }
-    Send, {`}
+    
     return
 
 ; Logic for * for italic
