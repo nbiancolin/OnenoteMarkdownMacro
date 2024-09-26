@@ -21,8 +21,8 @@ inCodeBlock := ""
 +3::
     ; first # recieved, send keystroke back
     SendInput, +3
-; then,, check if one was sent previously
-    If (A_ThisHotkey = A_PriorHotkey) && (A_TimeSincePriorHotkey < 750){
+    ; then, check if one was sent previously
+    If (A_ThisHotkey = A_PriorHotkey) and (A_TimeSincePriorHotkey < 750){
         Send, !hl{enter}
         Send, {Backspace}{Backspace}
     }
@@ -41,3 +41,21 @@ inCodeBlock := ""
         inCodeBlock := "true"               
     }
     Send, {`}
+    return
+
+; Logic for * for italic
+#IfWinActive ahk_exe ONENOTE.EXE
++8::
+    ; first one recieved
+    SendInput, +8
+    If (A_ThisHotkey = A_PriorHotkey) and (A_TimeSincePriorHotkey > 250) { ; so that it doesnt break if you send 2 at once
+        Send, {BackSpace}                       ;delete second asterisk
+        Send, ^+{left}                          ;select previous word TODO: Make this work for longer strings than one word?
+        Send, ^i                                ;italicise
+        Send, {left}{BackSpace}{End}{Space}     ;unselect word and remove first asterisk
+        Send, ^i
+    }
+    ;If (A_ThisHotkey = A_PriorHotkey) and (A_TimeSincePriorHotkey <= 250) { ; make bold if 2 in quic successions
+    ;    Send, ^b
+    ;}
+    return

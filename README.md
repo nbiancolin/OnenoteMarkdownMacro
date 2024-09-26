@@ -6,6 +6,7 @@
  Features currently implemented:
 - `##` for Title
 - **\`** for `inline code blocks`
+- Bold and italic with `*`
 - Only runs macros if you are typing inside a onenote window
 
 
