@@ -36,7 +36,7 @@ inCodeBlock := ""
         Send, !hin                                                      ;turn off highlighting
         inCodeBlock := ""
     } else {
-        Send, !hi{down}{down}{down}{down}{down}{down}{down}{enter}      ;set background highlighting to the text format colour
+        Send, !hi{down}{down}{right}{right}{right}{enter}      ;set background highlighting to the text format colour
         Send, !hffCourier New{enter}                                    ;Set font back to calibri
         inCodeBlock := "true"               
     }

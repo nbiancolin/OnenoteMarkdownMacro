@@ -6,8 +6,13 @@
  Features currently implemented:
 - `##` for Title
 - **\`** for `inline code blocks`
+- Only runs macros if you are typing inside a onenote window
 
 
 Featured I'd like to add eventually:
 - Support for different levels of titles
 - support for \`\`\` (three back tick) large code blocks
+
+## Steps to use:
+1. Install [AutoHotKey](https://www.autohotkey.com/)
+2. Run the script
