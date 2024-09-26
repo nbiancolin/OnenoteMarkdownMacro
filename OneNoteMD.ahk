@@ -1,5 +1,9 @@
 #NoEnv
-#InputLevel 1
+#InputLevel 1 ;needed so that the macro sending itself doesnt break
+
+; /*-- Global Variables --*/
+inCodeBlock := ""
+
 
 ; /*-- Function Declerations --*/
 
@@ -21,3 +25,15 @@
         Send, {Backspace}{Backspace}
     }
     return
+
+; Logic for in-line code blocks
+`::
+    if(inCodeBlock) {                                                   ;means we are leaving code block
+        Send, !hffcalibri{enter}                                        ;Set font to courier new
+        Send, !hin                                                      ;turn off highlighting
+        inCodeBlock := ""
+    } else {
+        Send, !hi{down}{down}{down}{down}{down}{down}{down}{enter}      ;set background highlighting to the text format colour
+        Send, !hffCouri{tab}{enter}                                    ;Set font back to calibri
+        inCodeBlock := "true"               
+    }
