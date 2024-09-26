@@ -11,11 +11,13 @@ inCodeBlock := ""
 ; /*-- Macros --*/
 
 ;Default comment for creating header in onenote
+#IfWinActive ahk_exe ONENOTE.EXE
 ^<!h::
     Send, !hl{enter}
     return
 
 ; Logic for typing '##" and having it go to a header right away
+#IfWinActive ahk_exe ONENOTE.EXE
 +3::
     ; first # recieved, send keystroke back
     SendInput, +3
@@ -27,6 +29,7 @@ inCodeBlock := ""
     return
 
 ; Logic for in-line code blocks
+#IfWinActive ahk_exe ONENOTE.EXE
 `::
     if(inCodeBlock) {                                                   ;means we are leaving code block
         Send, !hffcalibri{enter}                                        ;Set font to courier new
@@ -34,6 +37,7 @@ inCodeBlock := ""
         inCodeBlock := ""
     } else {
         Send, !hi{down}{down}{down}{down}{down}{down}{down}{enter}      ;set background highlighting to the text format colour
-        Send, !hffCouri{tab}{enter}                                    ;Set font back to calibri
+        Send, !hffCourier New{enter}                                    ;Set font back to calibri
         inCodeBlock := "true"               
     }
+    Send, {`}
