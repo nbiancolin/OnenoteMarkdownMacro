@@ -22,3 +22,5 @@ Featured I'd like to add eventually:
 ## Links:
 https://learn.microsoft.com/en-us/office/dev/add-ins/develop/develop-add-ins-visual-studio
 https://learn.microsoft.com/en-us/office/dev/add-ins/develop/develop-overview
+
+https://learn.microsoft.com/en-us/office/dev/add-ins/onenote/onenote-add-ins-programming-overview
