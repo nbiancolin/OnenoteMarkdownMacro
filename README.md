@@ -17,3 +17,8 @@ Featured I'd like to add eventually:
 ## Steps to use:
 1. Install [AutoHotKey](https://www.autohotkey.com/)
 2. Run the script
+
+
+## Links:
+https://learn.microsoft.com/en-us/office/dev/add-ins/develop/develop-add-ins-visual-studio
+https://learn.microsoft.com/en-us/office/dev/add-ins/develop/develop-overview
