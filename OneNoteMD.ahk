@@ -30,7 +30,7 @@ inCodeBlock := ""
 
 
 
-; Logic for in line code formatting (new)
+; Logic for in line code formatting (new) -- didn't like it bc it was slow
 ; #IfWinActive ahk_exe ONENOTE.EXE
 ; `::
 ;     Send, {``} 
@@ -80,4 +80,17 @@ inCodeBlock := ""
     ;If (A_ThisHotkey = A_PriorHotkey) and (A_TimeSincePriorHotkey <= 250) { ; make bold if 2 in quic successions
     ;    Send, ^b
     ;}
+    return
+
+
++_::
+    ;first one recieved, send input
+    SendInput, +_
+    If (A_ThisHotkey = A_PriorHotkey) {
+        Send, {BackSpace}
+        Send, ^+{left}
+        Send, ^u
+        Send, {left}{BackSpace}{End}{Space}
+        Send, ^u
+    }
     return
