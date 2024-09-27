@@ -24,13 +24,19 @@ prevHK_2 := ""
     ; first # recieved, send keystroke back
     SendInput, +3
     ; then, check if one was sent previously
-    If (prevHK_1 = "+3") and (A_TimeSincePriorHotkey < 750){
-        Send, !hl{enter}
-        Send, {Backspace}{Backspace}
+    If (prevHK_2 = "+3") and (A_TimeSincePriorHotkey < 750) {
+        Send, !hl{down}{enter}
+        Send, {Backspace}
         prevHK_2 := ""
         prevHK_1 := ""
-    } Else {
+    }
+    If (prevHK_1 = "+3") and (A_TimeSincePriorHotkey < 750) {
+        Send, !hl{enter}
+        Send, {Backspace}{Backspace}
         prevHK_2 := prevHK_1
+        prevHK_1 := "+3"
+    } Else {
+        ;prevHK_2 := prevHK_1
         prevHK_1 := "+3"
     }
     return
