@@ -33,10 +33,10 @@ prevHK_2 := ""
     If (prevHK_1 = "+3") and (A_TimeSincePriorHotkey < 750) {
         Send, !hl{enter}
         Send, {Backspace}{Backspace}
-        prevHK_2 := prevHK_1
+        prevHK_2 := "+3"
         prevHK_1 := "+3"
     } Else {
-        ;prevHK_2 := prevHK_1
+        prevHK_2 := ""
         prevHK_1 := "+3"
     }
     return
