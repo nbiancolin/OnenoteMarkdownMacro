@@ -3,6 +3,8 @@
 
 ; /*-- Global Variables --*/
 inCodeBlock := ""
+prevHK_1 := ""
+prevHK_2 := ""
 
 
 ; /*-- Function Declerations --*/
@@ -22,9 +24,20 @@ inCodeBlock := ""
     ; first # recieved, send keystroke back
     SendInput, +3
     ; then, check if one was sent previously
-    If (A_ThisHotkey = A_PriorHotkey) and (A_TimeSincePriorHotkey < 750){
+    If (prevHK_2 = "+3") and (A_TimeSincePriorHotkey < 750) {
+        Send, !hl{down}{enter}
+        Send, {Backspace}
+        prevHK_2 := ""
+        prevHK_1 := ""
+    }
+    If (prevHK_1 = "+3") and (A_TimeSincePriorHotkey < 750) {
         Send, !hl{enter}
         Send, {Backspace}{Backspace}
+        prevHK_2 := "+3"
+        prevHK_1 := "+3"
+    } Else {
+        prevHK_2 := ""
+        prevHK_1 := "+3"
     }
     return
 
@@ -58,7 +71,8 @@ inCodeBlock := ""
         inCodeBlock := ""
     } else {
         Send, !hi{down}{down}{right}{right}{right}{enter}      ;set background highlighting to the text format colour
-        Send, !hffCourier New{enter}                                    ;Set font back to calibri
+        ;Send, !hffCourier New{enter}                                    ;Set font back to calibri
+        Send, !hffCou{enter}
         inCodeBlock := "true" 
         Send, {``}              
     }
@@ -70,12 +84,17 @@ inCodeBlock := ""
 +8::
     ; first one recieved
     SendInput, +8
-    If (A_ThisHotkey = A_PriorHotkey) and (A_TimeSincePriorHotkey > 250) { ; so that it doesnt break if you send 2 at once
+    If (prevHK_1 = "+8")  { ; so that it doesnt break if you send 2 at once
         Send, {BackSpace}                       ;delete second asterisk
         Send, ^+{left}                          ;select previous word TODO: Make this work for longer strings than one word?
         Send, ^i                                ;italicise
         Send, {left}{BackSpace}{End}{Space}     ;unselect word and remove first asterisk
         Send, ^i
+        prevHK_2 := ""
+        prevHK_1 := ""
+    } Else {
+        prevHK_2 := prevHK_1
+        prevHK_1 := "+8"
     }
     ;If (A_ThisHotkey = A_PriorHotkey) and (A_TimeSincePriorHotkey <= 250) { ; make bold if 2 in quic successions
     ;    Send, ^b
