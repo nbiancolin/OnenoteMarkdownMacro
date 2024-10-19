@@ -102,14 +102,14 @@ prevHK_2 := ""
     return
 
 
-+_::
-    ;first one recieved, send input
-    SendInput, +_
-    If (A_ThisHotkey = A_PriorHotkey) {
-        Send, {BackSpace}
-        Send, ^+{left}
-        Send, ^u
-        Send, {left}{BackSpace}{End}{Space}
-        Send, ^u
-    }
-    return
+;+_::
+;    ;first one recieved, send input
+;    SendInput, +_
+;    If (A_ThisHotkey = A_PriorHotkey) {
+;        Send, {BackSpace}
+;        Send, ^+{left}
+;        Send, ^u
+;        Send, {left}{BackSpace}{End}{Space}
+;        Send, ^u
+;    }
+;    return
