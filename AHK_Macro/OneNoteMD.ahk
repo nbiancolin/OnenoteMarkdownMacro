@@ -80,26 +80,26 @@ prevHK_2 := ""
     return
 
 ; Logic for * for italic
-#IfWinActive ahk_exe ONENOTE.EXE
-+8::
-    ; first one recieved
-    SendInput, +8
-    If (prevHK_1 = "+8")  { ; so that it doesnt break if you send 2 at once
-        Send, {BackSpace}                       ;delete second asterisk
-        Send, ^+{left}                          ;select previous word TODO: Make this work for longer strings than one word?
-        Send, ^i                                ;italicise
-        Send, {left}{BackSpace}{End}{Space}     ;unselect word and remove first asterisk
-        Send, ^i
-        prevHK_2 := ""
-        prevHK_1 := ""
-    } Else {
-        prevHK_2 := prevHK_1
-        prevHK_1 := "+8"
-    }
-    ;If (A_ThisHotkey = A_PriorHotkey) and (A_TimeSincePriorHotkey <= 250) { ; make bold if 2 in quic successions
-    ;    Send, ^b
-    ;}
-    return
+;#IfWinActive ahk_exe ONENOTE.EXE
+;+8::
+;    ; first one recieved
+;    SendInput, +8
+;    If (prevHK_1 = "+8")  { ; so that it doesnt break if you send 2 at once
+;        Send, {BackSpace}                       ;delete second asterisk
+;        Send, ^+{left}                          ;select previous word TODO: Make this work for longer strings than one word?
+;        Send, ^i                                ;italicise
+;        Send, {left}{BackSpace}{End}{Space}     ;unselect word and remove first asterisk
+;        Send, ^i
+;        prevHK_2 := ""
+;        prevHK_1 := ""
+;    } Else {
+;        prevHK_2 := prevHK_1
+;        prevHK_1 := "+8"
+;    }
+;    ;If (A_ThisHotkey = A_PriorHotkey) and (A_TimeSincePriorHotkey <= 250) { ; make bold if 2 in quic successions
+;    ;    Send, ^b
+;    ;}
+;    return
 
 
 ;+_::
