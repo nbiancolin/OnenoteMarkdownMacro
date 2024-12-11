@@ -41,6 +41,11 @@ prevHK_2 := ""
     }
     return
 
+; Logic for equation editor
+#IfWinActive ahk_exe ONENOTE.EXE  
++4::
+    SendInput, !=
+    return
 
 
 ; Logic for in line code formatting (new) -- didn't like it bc it was slow
