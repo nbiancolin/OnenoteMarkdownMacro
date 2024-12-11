@@ -25,17 +25,19 @@ prevHK_2 := ""
     SendInput, +3
     ; then, check if one was sent previously
     If (prevHK_2 = "+3") and (A_TimeSincePriorHotkey < 750) {
-        Send, !hl{down}{enter}
+        Send, !^3
         Send, {Backspace}
         prevHK_2 := ""
         prevHK_1 := ""
-    }
+    } Else
     If (prevHK_1 = "+3") and (A_TimeSincePriorHotkey < 750) {
-        Send, !hl{enter}
-        Send, {Backspace}{Backspace}
+        Send, !^2
+        Send, {Backspace}
         prevHK_2 := "+3"
         prevHK_1 := "+3"
     } Else {
+        Send, !^1
+        Send, {Backspace}
         prevHK_2 := ""
         prevHK_1 := "+3"
     }
